@@ -1,33 +1,18 @@
 import cv2
-
-face_cascade = cv2.CascadeClassifier('../DATA/haarcascades/haarcascade_frontalface_default.xml')
-
-
-def adj_detect_face(img):
-
-    face_img = img.copy()
-    face_rects = face_cascade.detectMultiScale(face_img, scaleFactor=1.2, minNeighbors=5)
-
-    for(x,y,w,h) in face_rects:
-        cv2.rectangle(face_img, (x,y), (x+w, y+h), (255,255,255), 10)
-
-    return face_img
+import numpy as np
 
 
-cap = cv2.VideoCapture(0)
+#   function to retrieve a face from an image and return the area surrounding it
+def get_face(frame):
+    face_cascade = cv2.CascadeClassifier('./haar_features/haarcascade_frontalface_default.xml')
 
+    roi = np.full((1, 1, 3), 255, dtype=np.uint8)  # setting the region of interest to a 1x1 black square
+    loc = [0, 0]
+    face_rects = face_cascade.detectMultiScale(frame, scaleFactor=1.2, minNeighbors=5)  # detecting faces
 
-while True:
+    for (x, y, w, h) in face_rects:  # iterating through each face detected
+        roi = frame[y:y+h, x:x+w]  # setting roi to be the detected face
+        loc = [x+(w/2), y+(h/2)]
 
-    ret, frame = cap.read(0)
-
-    frame = adj_detect_face(frame)
-
-    cv2.imshow('Video Face Detect', frame)
-
-    k = cv2.waitKey(1)
-    if k == 27:
-        break
-
-cap.release()
-cv2.destroyAllWindows()
+    # roi = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)  # converting resulting image to greyscale, better way to do this?
+    return roi, loc
