@@ -30,14 +30,14 @@ while True:
         y1 = face.top()
         x2 = face.right()
         y2 = face.bottom()
-        cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0))
-
+        crop_img = frame[y1-10:y2+10, x1-10:x2+10]
+        #cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0))
 
     if cv2.waitKey(1) == 27:
         break
 
-    cv2.imshow('Dlib', frame)
-    cv2.imshow('ViolaJones', frame2)
+    cv2.imshow('Dlib', crop_img)
+    cv2.imshow('ViolaJones', frame)
 
     # if face.shape != (1, 1, 3):
     #     cv2.imshow('Face', face)
