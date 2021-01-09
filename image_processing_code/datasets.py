@@ -2,7 +2,6 @@ import os
 import numpy as np
 import cv2
 import scipy.io as sio
-import utils
 import random
 import dlib
 
@@ -31,11 +30,11 @@ def split_samples(samples_file, train_file, test_file, ratio=0.8):
                 data = []
     return train_num, test_num
 
+
 def get_list_from_filenames(file_path):
     with open(file_path) as f:
         lines = f.read().splitlines()
     return lines
-
 
 class Biwi:
     def __init__(self, data_dir, data_file, batch_size=64, input_size=64, ratio=0.8):
@@ -50,9 +49,10 @@ class Biwi:
 
     def __get_input_img(self, file_name):
         detector = dlib.get_frontal_face_detector()
+
         img_ext = ".png"
         img_path = file_name + '_rgb' + img_ext
-        img = cv2.imread(img_path)
+        img = dlib.load_rgb_image(img_path)
 
         faces = detector(img)
 
@@ -131,15 +131,15 @@ class Biwi:
     def test_num(self):
         return self.test_num
 
-    def save_test(self, name, save_dir, prediction):
-        img_path = os.path.join(self.data_dir, name + '_rgb.png')
-        # print(img_path)
-
-        cv2_img = cv2.imread(img_path)
-        cv2_img = utils.draw_axis(cv2_img, prediction[0], prediction[1], prediction[2], tdx=200, tdy=200,size=100)
-        save_path = os.path.join(save_dir, name.split('/')[1] + '.png')
-        # print(save_path)
-        cv2.imwrite(save_path, cv2_img)
+    # def save_test(self, name, save_dir, prediction):
+    #     img_path = os.path.join(self.data_dir, name + '_rgb.png')
+    #     # print(img_path)
+    #
+    #     cv2_img = cv2.imread(img_path)
+    #     cv2_img = utils.draw_axis(cv2_img, prediction[0], prediction[1], prediction[2], tdx=200, tdy=200,size=100)
+    #     save_path = os.path.join(save_dir, name.split('/')[1] + '.png')
+    #     # print(save_path)
+    #     cv2.imwrite(save_path, cv2_img)
 
     def data_generator(self, shuffle=True, test=False):
         sample_file = self.train_file
@@ -157,7 +157,7 @@ class Biwi:
 
             max_num = file_num - (file_num % self.batch_size)
 
-            for i in range(start=0, stop=max_num, step=self.batch_size):
+            for i in range(0, max_num, self.batch_size):
                 batch_x = []
                 batch_yaw = []
                 batch_pitch = []

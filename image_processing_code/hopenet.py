@@ -1,15 +1,26 @@
 from keras.applications.resnet50 import ResNet50
-from keras.applications.resnet import preprocess_input
-from keras.models import Model, Input, Sequential
+from keras.models import load_model
+from keras.applications.vgg16 import VGG16
+from keras.models import Model, Input
 from keras.layers import Dense, Flatten, Dropout
 import tensorflow as tf
+import numpy as np
 
 
 class HopeNet:
 
-    def __init__(self, input_size, num_bins):
+    def __init__(self, dataset, input_size, num_bins, batch_size, model_path, new=False):
+        self.dataset = dataset
         self.input_size = input_size
         self.num_bins = num_bins
+        self.batch_size = batch_size
+        # self.model_path = model_path
+        self.idx_tensor = [idx for idx in range(self.num_bins)]
+        self.idx_tensor = tf.Variable(np.array(self.idx_tensor, dtype=np.float32))
+        if new:
+            self.model = self.create_model()
+        else:
+            self.model = self.load_model(model_path)
 
     def create_model(self):
         inputs = Input(shape=(self.input_size, self.input_size, 3))  # Input Layer
@@ -17,9 +28,9 @@ class HopeNet:
         # weights=None: Random initialization of weights
         # include_top=None: Not including the fully-connected layer at the top of the network
         # input_tensor=input_tensor: Specifying the shape of image used as input for the model
-        resnet = ResNet50(weights=None, include_top=False)
+        net = VGG16(weights=None, include_top=False)
 
-        feature = resnet(inputs)
+        feature = net(inputs)
         # flattening model from 2D to 1D
         feature = Flatten()(feature)
         # The dropout layer below randomly turns a percentage of neurons off during training, to combat overfitting
@@ -42,7 +53,11 @@ class HopeNet:
 
         return model
 
-    def loss_angle(self, y_true, y_pred):
+    def load_model(self, model_path):
+        model = load_model(model_path, compile=False)
+        return model
+
+    def loss_angle(self, y_true, y_pred, alpha=0.5):
         """ Calculate the multi-part loss: classification_loss + alpha * regression_loss
         Args:
           y_true: the true label
@@ -64,5 +79,29 @@ class HopeNet:
         y_pred_cont = tf.reduce_sum(y_pred_cont * self.idx_tensor, 1) * 3 - 99
         mse_loss = tf.compat.v1.losses.mean_squared_error(y_true_cont, y_pred_cont)
 
-        total_loss = cls_loss + self.alpha * mse_loss
+        total_loss = cls_loss + alpha * mse_loss
         return total_loss
+
+    def train(self, model_path, max_epochs=25, load_weight=True):
+        self.model.summary()
+
+        if load_weight:
+            self.model.load_weights(model_path)
+        else:
+            self.model.fit_generator(generator=self.dataset.data_generator(test=False),
+                                     epochs=max_epochs,
+                                     steps_per_epoch=self.dataset.train_num // self.batch_size,
+                                     max_queue_size=10,
+                                     workers=1,
+                                     verbose=1)
+
+            self.model.save(model_path)
+
+    def test(self, face_imgs):
+        batch_x = np.array(face_imgs, dtype=np.float32)
+        predictions = self.model.predict(batch_x, batch_size=1, verbose=1)
+        predictions = np.asarray(predictions)
+        pred_cont_yaw = tf.reduce_sum(tf.nn.softmax(predictions[0, :, :]) * self.idx_tensor, 1) * 3 - 99
+        pred_cont_pitch = tf.reduce_sum(tf.nn.softmax(predictions[1, :, :]) * self.idx_tensor, 1) * 3 - 99
+        pred_cont_roll = tf.reduce_sum(tf.nn.softmax(predictions[2, :, :]) * self.idx_tensor, 1) * 3 - 99
+        return pred_cont_yaw[0], pred_cont_pitch[0], pred_cont_roll[0]
