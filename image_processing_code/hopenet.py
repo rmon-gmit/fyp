@@ -1,20 +1,18 @@
-from keras.applications.resnet50 import ResNet50
-from keras.models import load_model
-from keras.applications.vgg16 import VGG16
-from keras.models import Model, Input
-from keras.layers import Dense, Flatten, Dropout
-import tensorflow as tf
 import numpy as np
+import tensorflow as tf
+from keras.applications.vgg16 import VGG16
+from keras.layers import Dense, Flatten, Dropout
+from keras.models import Model, Input
+from keras.models import load_model
 
 
 class HopeNet:
 
-    def __init__(self, dataset, input_size, num_bins, batch_size, model_path, new=False):
+    def __init__(self, dataset="", input_size=0, num_bins=0, batch_size=0, model_path="", new=True):
         self.dataset = dataset
         self.input_size = input_size
         self.num_bins = num_bins
         self.batch_size = batch_size
-        # self.model_path = model_path
         self.idx_tensor = [idx for idx in range(self.num_bins)]
         self.idx_tensor = tf.Variable(np.array(self.idx_tensor, dtype=np.float32))
         if new:
@@ -25,15 +23,10 @@ class HopeNet:
     def create_model(self):
         inputs = Input(shape=(self.input_size, self.input_size, 3))  # Input Layer
 
-        # weights=None: Random initialization of weights
-        # include_top=None: Not including the fully-connected layer at the top of the network
-        # input_tensor=input_tensor: Specifying the shape of image used as input for the model
         net = VGG16(weights=None, include_top=False)
 
         feature = net(inputs)
-        # flattening model from 2D to 1D
         feature = Flatten()(feature)
-        # The dropout layer below randomly turns a percentage of neurons off during training, to combat overfitting
         feature = Dropout(0.5)(feature)
 
         yaw = Dense(self.num_bins, name='yaw', activation=None)(feature)
@@ -80,6 +73,7 @@ class HopeNet:
         mse_loss = tf.compat.v1.losses.mean_squared_error(y_true_cont, y_pred_cont)
 
         total_loss = cls_loss + alpha * mse_loss
+
         return total_loss
 
     def train(self, model_path, max_epochs=25, load_weight=True):
@@ -90,7 +84,7 @@ class HopeNet:
         else:
             self.model.fit_generator(generator=self.dataset.data_generator(test=False),
                                      epochs=max_epochs,
-                                     steps_per_epoch=self.dataset.train_num // self.batch_size,
+                                     steps_per_epoch=200,   # self.dataset.train_num // self.batch_size,
                                      max_queue_size=10,
                                      workers=1,
                                      verbose=1)
@@ -99,9 +93,10 @@ class HopeNet:
 
     def test(self, face_imgs):
         batch_x = np.array(face_imgs, dtype=np.float32)
-        predictions = self.model.predict(batch_x, batch_size=1, verbose=1)
+        predictions = self.model.predict(batch_x)
         predictions = np.asarray(predictions)
         pred_cont_yaw = tf.reduce_sum(tf.nn.softmax(predictions[0, :, :]) * self.idx_tensor, 1) * 3 - 99
         pred_cont_pitch = tf.reduce_sum(tf.nn.softmax(predictions[1, :, :]) * self.idx_tensor, 1) * 3 - 99
         pred_cont_roll = tf.reduce_sum(tf.nn.softmax(predictions[2, :, :]) * self.idx_tensor, 1) * 3 - 99
+        print("Pitch: " + str(pred_cont_pitch) + "Yaw: " + str(pred_cont_yaw) + "Roll: " + str(pred_cont_roll))
         return pred_cont_yaw[0], pred_cont_pitch[0], pred_cont_roll[0]
