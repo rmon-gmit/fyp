@@ -4,38 +4,46 @@ import random
 import cv2
 import dlib
 import numpy as np
+import scipy.io as sio
+
+from PIL import Image, ImageFilter
+
+import utils
 
 
 def split_samples(samples_file, train_file, test_file, ratio=0.8):
-    with open(samples_file) as samples_fp:
-        lines = samples_fp.readlines()
-        random.shuffle(lines)
 
-        train_num = int(len(lines) * ratio)
-        test_num = len(lines) - train_num
+    with open(samples_file) as samples_fp:  # opening filename_list.txt
+        lines = samples_fp.readlines()  # reading each line in the file
+        random.shuffle(lines)   # shuffling lines in the file
+
+        train_num = int(len(lines) * ratio)     # setting train number to the number of lines times the train ratio
+        test_num = len(lines) - train_num       # setting test number to the remaining lines
         count = 0
         data = []
-        for line in lines:
+
+        for line in lines:  # iterating over every line
             count += 1
             data.append(line)
-            if count == train_num:
-                with open(train_file, "w+") as train_fp:
+            if count == train_num:                          # if count has reached the number of train lines
+                with open(train_file, "w+") as train_fp:    # open the training file to write in
                     for d in data:
-                        train_fp.write(d)
-                data = []
+                        train_fp.write(d)                   # writing the data
+                data = []                                   # clearing the data
 
-            if count == train_num + test_num:
-                with open(test_file, "w+") as test_fp:
+            if count == train_num + test_num:               # if count has reached the number of test lines
+                with open(test_file, "w+") as test_fp:      # open the testing file to write in
                     for d in data:
-                        test_fp.write(d)
-                data = []
+                        test_fp.write(d)                    # writing the data
+                data = []                                   # clearing the data
+
     return train_num, test_num
 
 
 def get_list_from_filenames(file_path):
-    with open(file_path) as f:
-        lines = f.read().splitlines()
-    return lines
+    with open(file_path) as f:          # opening filenames_list.txt
+        lines = f.read().splitlines()   # creating a list of each line in the file
+    return lines                        # returning the list
 
 
 class Biwi:
@@ -169,3 +177,132 @@ class Biwi:
                     yield (batch_x, [batch_yaw, batch_pitch, batch_roll])
             if test:
                 break
+
+
+class AFLW2000:
+
+    def __init__(self, data_dir, filename_list, batch_size=16, input_size=64):
+        self.data_dir = data_dir
+        self.data_file = filename_list
+        self.batch_size = batch_size
+        self.input_size = input_size
+        self.train_file = None
+        self.test_file = None
+        self.train_num, self.test_num = self.__gen_train_test_file(self.data_dir + 'train.txt', self.data_dir + 'test.txt')
+
+    def __get_ypr_from_mat(self, mat_path):
+        mat = sio.loadmat(mat_path)
+        pre_pose_params = mat['Pose_Para'][0]
+        pose_params = pre_pose_params[:2]
+        return pose_params  # pose params is an array containing the pitch and yaw of an image in radians
+
+    def __get_pt2d_from_mat(self, mat_path):
+        # Get 2D landmarks
+        mat = sio.loadmat(mat_path)
+        pt2d = mat['pt2d']
+        return pt2d
+
+    def __get_input_label(self, data_dir, file_name, annot_ext='.mat'):
+        # We get the pose in radians
+        pose = self.__get_ypr_from_mat(os.path.join(data_dir, file_name + annot_ext))
+
+        # And convert to degrees.
+        pitch = pose[0] * 180.0 / np.pi
+        yaw = pose[1] * 180.0 / np.pi
+
+        cont_labels = [pitch, yaw]    # setting continuous labels for mse regression, these are the degree vals
+
+        # Bin values
+        bins = np.array(range(-99, 99, 3))
+        bin_labels = np.digitize([pitch, yaw], bins) - 1  # setting the binned labels for classification, 0-2 deg = 33 bin, 3 degree per bin, rounded down
+
+        return bin_labels, cont_labels
+
+    def __gen_train_test_file(self, train_file, test_file):
+        self.train_file = train_file
+        self.test_file = test_file
+        return split_samples(self.data_dir + self.data_file, self.train_file, self.test_file, ratio=0.8)    # calling split samples method and passing values
+
+    def train_num(self):
+        return self.train_num
+
+    def test_num(self):
+        return self.test_num
+
+    def __get_input_img(self, data_dir, file_name, img_ext='.jpg', annot_ext='.mat'):
+        img = cv2.imread(file_name + img_ext)  # data_dir +
+        pt2d = self.__get_pt2d_from_mat(file_name + annot_ext)  # data_dir +
+
+        # Crop the face loosely
+        x_min = min(pt2d[0, :])
+        y_min = min(pt2d[1, :])
+        x_max = max(pt2d[0, :])
+        y_max = max(pt2d[1, :])
+
+        Lx = abs(x_max - x_min)
+        Ly = abs(y_max - y_min)
+        Lmax = max(Lx, Ly) * 1.5
+        center_x = x_min + Lx // 2
+        center_y = y_min + Ly // 2
+
+        x_min = center_x - Lmax // 2
+        x_max = center_x + Lmax // 2
+        y_min = center_y - Lmax // 2
+        y_max = center_y + Lmax // 2
+
+        k = 0.20
+        x_min -= 2 * k * abs(x_max - x_min)
+        y_min -= 2 * k * abs(y_max - y_min)
+        x_max += 2 * k * abs(x_max - x_min)
+        y_max += 0.6 * k * abs(y_max - y_min)
+
+        if x_min < 0:
+            y_max -= abs(x_min)
+            x_min = 0
+        if y_min < 0:
+            x_max -= abs(y_min)
+            y_min = 0
+        if x_max > img.shape[1]:
+            y_min += abs(x_max - img.shape[1])
+            x_max = img.shape[1]
+        if y_max > img.shape[0]:
+            x_min += abs(y_max - img.shape[0])
+            y_max = img.shape[0]
+
+        crop_img = img[int(y_min):int(y_max), int(x_min):int(x_max)]
+        crop_img = np.asarray(cv2.resize(crop_img, (self.input_size, self.input_size)))
+        normed_img = (crop_img - crop_img.mean()) / crop_img.std()
+        return normed_img
+
+    def data_generator(self, shuffle=True):
+        filenames = get_list_from_filenames(self.train_file)
+
+        while True:
+            if shuffle:
+                idx = np.random.permutation(self.train_num)
+                filenames = np.array(filenames)[idx]
+            max_num = self.train_num - (self.train_num % self.batch_size)
+            for i in range(0, max_num, self.batch_size):
+                batch_img = []
+                batch_yaw = []
+                batch_pitch = []
+                names = []
+                for j in range(self.batch_size):
+                    img = self.__get_input_img(self.data_dir, filenames[i + j])
+                    bin_labels, cont_labels = self.__get_input_label(self.data_dir, filenames[i + j])
+
+                    batch_img.append(img)
+                    batch_pitch.append([bin_labels[0], cont_labels[0]])
+                    batch_yaw.append([bin_labels[1], cont_labels[1]])
+                    names.append(filenames[i + j])
+
+                batch_img = np.array(batch_img, dtype=np.float32)
+                batch_yaw = np.array(batch_yaw)
+                batch_pitch = np.array(batch_pitch)
+
+                yield (batch_img, [batch_pitch, batch_yaw])
+
+
+
+
+
