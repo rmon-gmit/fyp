@@ -102,14 +102,14 @@ class HopeNet:
 
         return angle_loss
 
-    def train(self, model_path, max_epochs=25, load_weight=False):
+    def train(self, model_path, epochs=25, load_weight=False):
         self.model.summary()
 
         if load_weight:
             self.model.load_weights(model_path)
         else:
             self.model.fit(x=self.dataset.data_generator(),
-                           epochs=max_epochs,
+                           epochs=epochs,
                            steps_per_epoch=self.dataset.train_num // self.batch_size,
                            max_queue_size=10,
                            workers=1,

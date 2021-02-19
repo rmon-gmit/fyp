@@ -6,7 +6,7 @@ from math import cos, sin
 import dlib
 
 
-def draw_axis(img, yaw, pitch, ptx=None, pty=None, size=100):
+def draw_axis(img, yaw, pitch, ptx=None, pty=None, size=10000):
     # pi / 180 = 1 degree, multiplying this by the euler angels
     pitch = pitch * np.pi / 180
     yaw = -(yaw * np.pi / 180)
@@ -92,25 +92,3 @@ def crop_face_loosely(shape, img, input_size):
     normed_img = (input_img - input_img.mean()) / input_img.std()
 
     return normed_img
-
-
-def create_mask(img, yaw, pitch, ptx=None, pty=None, size=100):
-
-    pitch = pitch * np.pi / 180
-    yaw = -(yaw * np.pi / 180)
-
-    if ptx != None and pty != None:
-        ptx = ptx
-        pty = pty
-    else:
-        height, width = img.shape[:2]
-        ptx = width / 2
-        pty = height / 2
-
-    # Z-Axis (out of the screen) drawn in blue
-    x3 = size * (sin(yaw)) + ptx
-    y3 = size * (-cos(yaw) * sin(pitch)) + pty
-    ctr_pnt = (int(ptx), int(pty))
-    pt2 = (int(x3), int(y3))
-
-    cv2.line(img, ctr_pnt, pt2, (255, 255, 255), 2)

@@ -22,4 +22,4 @@ dataset = datasets.AFLW2000(AFLW2000_DATA_DIR, '\\filename_list.txt', batch_size
 
 net = hopenet.HopeNet(dataset, INPUT_SIZE, BIN_NUM, BATCH_SIZE, MODEL_PATH)
 
-net.train(MODEL_PATH, max_epochs=EPOCHS, load_weight=False)
+net.train(MODEL_PATH, epochs=EPOCHS, load_weight=False)

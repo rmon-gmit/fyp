@@ -14,9 +14,9 @@ face_landmark_path = PROJECT_DIR + "haar_features\\shape_predictor_68_face_landm
 BIWI_DATA_DIR = "C:\\Users\\rossm\\kinect_head_pose_db\\hpdb\\"
 AFLW2000_DATA_DIR = "C:\\Users\\rossm\\AFLW2000\\"
 
-# MODEL_PATH = "C:\\Users\\rossm\\OneDrive - GMIT\\Year 4\\Final Year Project\\models\\biwi_model_pretrained.h5"
+MODEL_PATH = "C:\\Users\\rossm\\OneDrive - GMIT\\Year 4\\Final Year Project\\models\\biwi_model_pretrained.h5"
 # MODEL_PATH = "C:\\Users\\rossm\\OneDrive - GMIT\\Year 4\\Final Year Project\\image_processing_code\\models\\alexnet_aflw_200_epoch.h5"
-MODEL_PATH = "C:\\Users\\rossm\\OneDrive - GMIT\\Year 4\\Final Year Project\\image_processing_code\\models\\alexnet_aflw_50_epoch.h5"
+# MODEL_PATH = "C:\\Users\\rossm\\OneDrive - GMIT\\Year 4\\Final Year Project\\image_processing_code\\models\\alexnet_aflw_50_epoch.h5"
 face_cascade = cv2.CascadeClassifier('./haar_features/haarcascade_frontalface_default.xml')
 
 BIN_NUM = 66
@@ -48,7 +48,7 @@ while True:
             frames.append(face_crop)
             if len(frames) == 1:
                 pred_cont_yaw, pred_cont_pitch = net.test(frames)
-                cv2_img = utils.draw_axis(frame, pred_cont_yaw, pred_cont_pitch, ptx=shape[30][0], pty=shape[30][1], size=100)
+                cv2_img = utils.draw_axis(frame, pred_cont_yaw, pred_cont_pitch, ptx=shape[30][0], pty=shape[30][1])
                 cv2.imshow("cv2_img", cv2_img)
                 frames = []
 
