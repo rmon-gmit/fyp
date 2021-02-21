@@ -62,11 +62,13 @@ def create_mask(img, pitch, yaw, ptx=None, pty=None, size=300, theta=20):
 
     ellipse_angle = dir_angle  # Ellipse angle of rotation
 
-
     cv2.line(img, head_ctr, edge1, (0, 255, 0), 2)
     cv2.line(img, head_ctr, edge2, (0, 255, 0), 2)
 
-    ellipse_x = 20  # Ellipse x axis
+    x_max = img.shape[1] / 2
+
+    # ellipse_x = x_max * 1/dir_len  # Ellipse x axis
+    ellipse_x = 20
     ellipse_y = math.tan(math.radians(theta)) * dir_len   # Ellipse y axis
 
     if ellipse_x < 0:
@@ -102,9 +104,6 @@ img1 = cv2.imread('images/00000003.jpg')
 img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2RGB)
 print(img1.shape)
 
-plt.imshow(img1)
-plt.show()
-
-masked_image = create_mask(img1, pitch=40, yaw=30, theta=20)
+masked_image = create_mask(img1, pitch=-12, yaw=-20, theta=20)
 # plt.imshow(masked_image)
 # plt.show()
