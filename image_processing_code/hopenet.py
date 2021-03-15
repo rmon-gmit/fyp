@@ -18,7 +18,7 @@ ALPHA = 0.5     # Alpha is the coefficient to be applied to the regression (mse)
 
 class HopeNet:
 
-    def __init__(self, dataset, input_size=0, num_bins=0, batch_size=0, model_path="", new=True):
+    def __init__(self, dataset="", input_size=0, num_bins=0, batch_size=0, model_path="", new=True):
         self.dataset = dataset
         self.input_size = input_size
         self.num_bins = num_bins
@@ -120,20 +120,20 @@ class HopeNet:
     def test(self, face_imgs):
         batch_x = np.array(object=face_imgs, dtype=np.float32)
 
-        predictions = self.model.predict(x=batch_x)
-        predictions = np.asarray(predictions)   # predictions is a tensor of values corresponding to how likely the image fits into one of 66 bins for pitch and yaw
+        pred = self.model.predict(x=batch_x)
+        pred = np.asarray(pred)  # pred is a tensor of values corresponding to how likely the image fits into one of 66 bins for pitch and yaw
 
-        pred_bin_yaw = predictions[0, :, :]
-        pred_bin_pitch = predictions[1, :, :]
+        pred_bin_yaw = pred[0, :, :]
+        pred_bin_pitch = pred[1, :, :]
 
-        softmax_yaw = tf.nn.softmax(pred_bin_yaw)  # applying a softmax activation to the yaw predictions
-        softmax_pitch = tf.nn.softmax(pred_bin_pitch)    # applying a softmax activation to the pitch predictions
+        softmax_yaw = tf.nn.softmax(pred_bin_yaw)  # applying a softmax activation to the yaw pred
+        softmax_pitch = tf.nn.softmax(pred_bin_pitch)  # applying a softmax activation to the pitch pred
 
-        red_yaw = tf.reduce_sum(softmax_yaw * self.idx_tensor, 1)   # reducing the 1st axis of yaw
-        red_pitch = tf.reduce_sum(softmax_pitch * self.idx_tensor, 1)   # reducing the 1st axis of pitch
+        red_yaw = tf.reduce_sum(softmax_yaw * self.idx_tensor, 1)  # reducing the 1st axis of yaw
+        red_pitch = tf.reduce_sum(softmax_pitch * self.idx_tensor, 1)  # reducing the 1st axis of pitch
 
-        pred_cont_yaw = red_yaw * 3 - 99   # calculating continuous yaw predictions
-        pred_cont_pitch = red_pitch * 3 - 99   # calculating continuous pitch predictions
+        pred_cont_yaw = red_yaw * 3 - 99  # calculating continuous yaw pred
+        pred_cont_pitch = red_pitch * 3 - 99  # calculating continuous pitch pred
 
         print("Pitch: " + str(pred_cont_pitch[0]) + "Yaw: " + str(pred_cont_yaw[0]))
 

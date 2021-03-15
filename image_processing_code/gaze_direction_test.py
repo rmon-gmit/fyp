@@ -48,29 +48,21 @@ while True:
             frames.append(face_crop)
             if len(frames) == 1:
                 pred_cont_yaw, pred_cont_pitch = net.test(frames)
-                cv2_img = utils.draw_axis(frame, pred_cont_yaw, pred_cont_pitch, ptx=shape[30][0], pty=shape[30][1])
-                cv2.imshow("cv2_img", cv2_img)
+                # cv2_img = utils.draw_axis(frame, pred_cont_yaw, pred_cont_pitch, ptx=shape[30][0], pty=shape[30][1])
+                cv2.imshow("Frame", frame)
+                cv2_img = utils.create_mask(frame,
+                                    pitch=pred_cont_pitch,
+                                    yaw=pred_cont_yaw,
+                                    ptx=shape[30][0],
+                                    pty=shape[30][1],
+                                    size=1000,
+                                    theta=15)
+
+                cv2.imshow("Masked Image", cv2_img)
                 frames = []
 
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
-
-# while True:
-#     ret, frame = cap.read(0)  # getting the frame from the video, this will be replaced by the return contents of get_frames
-#     face_crop, loc = utils.get_face(frame=frame, input_size=INPUT_SIZE, face_cascade=face_cascade)
-#     if face_crop.shape != (1, 1, 3):
-#         frames.append(face_crop)
-#         if len(frames) == 1:
-#             ptx = loc[0]
-#             pty = loc[1]
-#             pred_cont_yaw, pred_cont_pitch, pred_cont_roll = net.test(frames)
-#             cv2_img = utils.draw_axis(frame, pred_cont_yaw, pred_cont_pitch, pred_cont_roll, ptx=ptx,pty=pty, size=100)
-#
-#             cv2.imshow("cv2_img", cv2_img)
-#             frames = []
-#
-#         if cv2.waitKey(1) & 0xFF == ord('q'):
-#             break
 
 cap.release()
 cv2.destroyAllWindows()
