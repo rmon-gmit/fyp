@@ -95,7 +95,7 @@ def crop_face_loosely(shape, img, input_size):
 
     return cropped_face
 
-def create_mask(img, pitch, yaw, ptx=None, pty=None, size=1000, theta=15):
+def create_mask(img, pitch, yaw, ptx=None, pty=None, size=1000, theta=20):
     # drawing a line
     pitch = pitch * np.pi / 180
     yaw = -(yaw * np.pi / 180)

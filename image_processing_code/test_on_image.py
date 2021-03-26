@@ -9,7 +9,7 @@ import utils
 from imutils import face_utils
 import hopenet
 
-IMAGE_FILE = "images/frame_00139_rgb.png"
+IMAGE_FILE = "images/expo.jpg"
 INPUT_SIZE = 64
 BIN_NUM = 66
 
@@ -25,6 +25,7 @@ net = hopenet.HopeNet(num_bins=BIN_NUM, model_path=HPE_MODEL_PATH, new=False)
 
 frame = cv2.imread(IMAGE_FILE)
 
+
 def predict_pose(frame):
 
     face_rects = detector(frame)
@@ -38,8 +39,8 @@ def predict_pose(frame):
 
         pred_cont_yaw, pred_cont_pitch = net.test(cropped_face)
 
-        masked_img = utils.create_mask(frame, pitch=pred_cont_pitch, yaw=pred_cont_yaw, ptx=shape[30][0], pty=shape[30][1], size=1000, theta=15)
-        masked_img = cv2.cvtColor(masked_img, cv2.COLOR_BGR2RGB)
+        masked_img = utils.create_mask(frame, pitch=pred_cont_pitch, yaw=pred_cont_yaw, ptx=shape[30][0], pty=shape[30][1], size=1000, theta=40)
+        # masked_img = cv2.cvtColor(masked_img, cv2.COLOR_BGR2RGB)
 
         cv2.imwrite("results/hpe/hpe_img.jpg", masked_img)
 
@@ -103,7 +104,5 @@ def test_model():
 
 
 predict_pose(frame)
-
 tf.compat.v1.disable_eager_execution()
-
 test_model()
