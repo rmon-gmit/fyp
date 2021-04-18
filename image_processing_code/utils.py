@@ -2,6 +2,7 @@ import os
 import numpy as np
 import cv2
 import scipy.io as sio
+from skimage import measure
 import math
 
 from math import cos, sin
@@ -95,6 +96,7 @@ def crop_face_loosely(shape, img, input_size):
 
     return cropped_face
 
+
 def create_mask(img, pitch, yaw, ptx=None, pty=None, size=1000, theta=20):
     # drawing a line
     pitch = pitch * np.pi / 180
@@ -184,4 +186,42 @@ def create_mask(img, pitch, yaw, ptx=None, pty=None, size=1000, theta=20):
 
     # apply the mask
     mask_image = cv2.bitwise_and(img, mask)
+    return mask_image
+
+
+def most_salient_area(cntr_pt, gaze_point, saliency_img):
+
+    mask_image = []
+    gray = cv2.cvtColor(saliency_img, cv2.COLOR_BGR2GRAY)
+
+    # Blurring to reduce noise
+    blurred = cv2.GaussianBlur(src=gray, ksize=(41, 41), sigmaX=0)
+    thresh = cv2.threshold(blurred, 100, 255, cv2.THRESH_BINARY)[1]
+    thresh = cv2.erode(thresh, None, iterations=2)
+    thresh = cv2.dilate(thresh, None, iterations=4)
+
+    # Perform connected component analysis on the image
+    labels = measure.label(thresh)
+
+    max_mean = 0
+
+    # Loop over unique labels
+    for label in np.unique(labels):
+
+        # If not background label
+        if label != 0:
+
+            label_mask = np.zeros(thresh.shape, dtype="uint8")
+            label_mask[labels == label] = 255
+            num_pixels = cv2.countNonZero(label_mask)
+
+            # If area is not too small (eliminating noise)
+            if num_pixels > 300:
+
+                current_mean = cv2.mean(gray, label_mask)  # * angle whatever
+                if max_mean < current_mean[0]:
+                    max_mean = current_mean[0]  # calculating average value of pixels within mask
+                    mask_image = cv2.bitwise_and(gray, label_mask)
+                    mask_image = cv2.cvtColor(mask_image, cv2.COLOR_GRAY2BGR)
+
     return mask_image

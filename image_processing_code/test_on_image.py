@@ -58,7 +58,7 @@ def test_model():
         device (str): Represents either "cpu" or "gpu".
     """
 
-    iterator = data.get_dataset_iterator("results/hpe/hpe_img.jpg")
+    iterator = data.get_dataset_iterator("images/expo.jpg")
 
     next_element, init_op = iterator
 
