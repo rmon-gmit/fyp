@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand />
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="be7f99fa-6a12-4f4a-a1aa-2781ae0e5210" name="Default Changelist" comment="most salient area method 1" />
+    <list id="5e9bee2d-97c1-4ba0-bcb4-8dc18a080734" name="messing with face detection" comment="" />
+    <list id="f76a192c-7fe8-4015-b1b9-9e7a6e2e4b6f" name="Start of Hopenet" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Pull.Settings">
+    <option name="BRANCH" value="master" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="JupyterTrust" id="88bfe6f2-0048-4b50-bff7-4472159e9bfa" />
+  <component name="ProjectId" id="1mL6ahPyXg0b9g8GaBfOT8tm95s" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$/OneDrive/Year 4 Backup/OpenCV_Course" />
+    <property name="settings.editor.selected.configurable" value="PyScientificConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\rossm\OneDrive - GMIT\Year 4\Final Year Project\image_processing_code\images" />
+      <recent name="C:\Users\rossm\OneDrive - GMIT\Year 4\Final Year Project\image_processing_code" />
+      <recent name="C:\Users\rossm\OneDrive - GMIT\Year 4\Final Year Project\image_processing_code\haar_features" />
+      <recent name="C:\Users\rossm\OneDrive - GMIT\Year 4\Final Year Project\image_processing_code\model" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\rossm\OneDrive - GMIT\Year 4\Final Year Project\image_processing_code\images" />
+      <recent name="C:\Users\rossm\OneDrive - GMIT\Year 4\Final Year Project\image_processing_code" />
+      <recent name="C:\Users\rossm\OneDrive - GMIT\Year 4\Final Year Project\image_processing_code\haar_features" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.test_on_image">
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="image_processing_code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="gaze_direction_test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="image_processing_code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/gaze_direction_test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="mask" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="image_processing_code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mask.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_on_image" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="image_processing_code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_on_image.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="tf" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="image_processing_code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tf.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="train_hopenet (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="image_processing_code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/train_hopenet.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.test_on_image" />
+        <item itemvalue="Python.mask" />
+        <item itemvalue="Python.gaze_direction_test" />
+        <item itemvalue="Python.train_hopenet (1)" />
+        <item itemvalue="Python.tf" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="be7f99fa-6a12-4f4a-a1aa-2781ae0e5210" name="Default Changelist" comment="" />
+      <changelist id="f76a192c-7fe8-4015-b1b9-9e7a6e2e4b6f" name="Start of Hopenet" comment="" />
+      <changelist id="5e9bee2d-97c1-4ba0-bcb4-8dc18a080734" name="messing with face detection" comment="" />
+      <created>1609260588670</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1609260588670</updated>
+      <workItem from="1609260607958" duration="5302000" />
+      <workItem from="1609338474102" duration="10213000" />
+      <workItem from="1609368892140" duration="283000" />
+      <workItem from="1609369187965" duration="812000" />
+      <workItem from="1609414480990" duration="684000" />
+      <workItem from="1609417540125" duration="597000" />
+      <workItem from="1609595984940" duration="374000" />
+      <workItem from="1609683350497" duration="350000" />
+      <workItem from="1609683722939" duration="1752000" />
+      <workItem from="1609700777719" duration="1013000" />
+      <workItem from="1609706547654" duration="22000" />
+      <workItem from="1609707011443" duration="734000" />
+      <workItem from="1609771311121" duration="1492000" />
+      <workItem from="1609777003459" duration="11000" />
+      <workItem from="1609777248102" duration="9409000" />
+      <workItem from="1609852852041" duration="6000" />
+      <workItem from="1609852880957" duration="15873000" />
+      <workItem from="1609950859207" duration="5017000" />
+      <workItem from="1609970671378" duration="2988000" />
+      <workItem from="1609979370566" duration="1524000" />
+      <workItem from="1610020448377" duration="1240000" />
+      <workItem from="1610029659349" duration="3499000" />
+      <workItem from="1610035368779" duration="9098000" />
+      <workItem from="1610060098635" duration="193000" />
+      <workItem from="1610101572451" duration="17089000" />
+      <workItem from="1610143477244" duration="5811000" />
+      <workItem from="1610151954737" duration="88000" />
+      <workItem from="1610152565609" duration="10085000" />
+      <workItem from="1610204322747" duration="279000" />
+      <workItem from="1610206317849" duration="17740000" />
+      <workItem from="1610240648190" duration="3274000" />
+      <workItem from="1610243963857" duration="1117000" />
+      <workItem from="1610274042271" duration="9493000" />
+      <workItem from="1610294122903" duration="8118000" />
+      <workItem from="1610304072021" duration="1552000" />
+      <workItem from="1610378987549" duration="597000" />
+      <workItem from="1610400137820" duration="1396000" />
+      <workItem from="1610440800519" duration="1521000" />
+      <workItem from="1610702858628" duration="1123000" />
+      <workItem from="1610704660421" duration="1542000" />
+      <workItem from="1610708217343" duration="11718000" />
+      <workItem from="1611234947239" duration="3905000" />
+      <workItem from="1611239522396" duration="11989000" />
+      <workItem from="1611328654057" duration="68000" />
+      <workItem from="1611328810222" duration="5310000" />
+      <workItem from="1611345004240" duration="196000" />
+      <workItem from="1611420171355" duration="5203000" />
+      <workItem from="1611438029881" duration="4102000" />
+      <workItem from="1611691473204" duration="5731000" />
+      <workItem from="1611703045332" duration="1015000" />
+      <workItem from="1611704134322" duration="60000" />
+      <workItem from="1611742869074" duration="804000" />
+      <workItem from="1611765832356" duration="10781000" />
+      <workItem from="1611860807302" duration="5827000" />
+      <workItem from="1611869158115" duration="379000" />
+      <workItem from="1611869571030" duration="4162000" />
+      <workItem from="1611928650293" duration="2708000" />
+      <workItem from="1612127008429" duration="5757000" />
+      <workItem from="1612182224495" duration="1265000" />
+      <workItem from="1612214039391" duration="2729000" />
+      <workItem from="1612255834867" duration="144000" />
+      <workItem from="1612267844679" duration="10093000" />
+      <workItem from="1612385722638" duration="5304000" />
+      <workItem from="1612471846720" duration="62000" />
+      <workItem from="1612472820680" duration="618000" />
+      <workItem from="1612479554822" duration="598000" />
+      <workItem from="1612534085987" duration="3625000" />
+      <workItem from="1612704337005" duration="1115000" />
+      <workItem from="1612729382124" duration="1182000" />
+      <workItem from="1612730893775" duration="7245000" />
+      <workItem from="1612820476141" duration="11276000" />
+      <workItem from="1612884149283" duration="1838000" />
+      <workItem from="1613078878512" duration="4760000" />
+      <workItem from="1613135746561" duration="4441000" />
+      <workItem from="1613424404580" duration="5423000" />
+      <workItem from="1613469325141" duration="4433000" />
+      <workItem from="1613743161670" duration="1180000" />
+      <workItem from="1613744376328" duration="759000" />
+      <workItem from="1613837635852" duration="773000" />
+      <workItem from="1613913557638" duration="163000" />
+      <workItem from="1613937172453" duration="2484000" />
+      <workItem from="1614023052117" duration="601000" />
+      <workItem from="1614031124408" duration="3539000" />
+      <workItem from="1614034692133" duration="920000" />
+      <workItem from="1614085523354" duration="901000" />
+      <workItem from="1614088627177" duration="30000" />
+      <workItem from="1614092756018" duration="1200000" />
+      <workItem from="1614177937188" duration="611000" />
+      <workItem from="1615069191935" duration="97000" />
+      <workItem from="1615069320756" duration="996000" />
+      <workItem from="1615070356775" duration="33000" />
+      <workItem from="1615070585612" duration="365000" />
+      <workItem from="1615071058506" duration="280000" />
+      <workItem from="1615071720191" duration="256000" />
+      <workItem from="1615486780228" duration="8591000" />
+      <workItem from="1615551611744" duration="210000" />
+      <workItem from="1615552895813" duration="8007000" />
+      <workItem from="1615666334689" duration="3030000" />
+      <workItem from="1615669438036" duration="3194000" />
+      <workItem from="1615673800878" duration="353000" />
+      <workItem from="1615676945421" duration="106000" />
+      <workItem from="1615677477675" duration="1137000" />
+      <workItem from="1615718406376" duration="19000" />
+      <workItem from="1615900232391" duration="551000" />
+      <workItem from="1615903645038" duration="3456000" />
+      <workItem from="1615908482200" duration="615000" />
+      <workItem from="1616162616077" duration="3280000" />
+      <workItem from="1616184952059" duration="575000" />
+      <workItem from="1616359005346" duration="610000" />
+      <workItem from="1616504632411" duration="1589000" />
+      <workItem from="1617105639898" duration="689000" />
+      <workItem from="1618576782091" duration="483000" />
+      <workItem from="1618592563800" duration="624000" />
+      <workItem from="1618593854345" duration="4699000" />
+      <workItem from="1618660682014" duration="719000" />
+      <workItem from="1618680587255" duration="611000" />
+      <workItem from="1618754443592" duration="35000" />
+      <workItem from="1618755244321" duration="1208000" />
+      <workItem from="1618759613638" duration="537000" />
+      <workItem from="1618777048217" duration="16000" />
+      <workItem from="1618777236790" duration="7000" />
+      <workItem from="1618778251746" duration="722000" />
+      <workItem from="1618781726647" duration="993000" />
+    </task>
+    <task id="LOCAL-00001" summary="messing with face detection">
+      <created>1609355435431</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1609355435431</updated>
+    </task>
+    <task id="LOCAL-00002" summary="messing with face detection">
+      <created>1609979920619</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1609979920619</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Start of Hopenet">
+      <created>1609980003229</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1609980003229</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Start of Hopenet">
+      <created>1609980144055</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1609980144055</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Different approach to hopenet">
+      <created>1610060265429</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1610060265429</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Training hopenet">
+      <created>1610151520589</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1610151520589</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Training hopenet (fix)">
+      <created>1610153629904</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1610153629904</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Training hopenet">
+      <created>1610400195636</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1610400195636</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Training hopenet">
+      <created>1610400226111</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1610400226111</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Work on gaze mask">
+      <created>1613743274781</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1613743274781</updated>
+    </task>
+    <task id="LOCAL-00011" summary="most salient area method 1">
+      <created>1618782665722</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1618782665722</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="false" />
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="messing with face detection" />
+    <MESSAGE value="Start of Hopenet" />
+    <MESSAGE value="Different approach to hopenet" />
+    <MESSAGE value="Training hopenet (fix)" />
+    <MESSAGE value="Training hopenet" />
+    <MESSAGE value="Work on gaze mask" />
+    <MESSAGE value="Gaze mask cone working" />
+    <MESSAGE value="most salient area method 1" />
+    <option name="LAST_COMMIT_MESSAGE" value="most salient area method 1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="423" y="143" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1613078981255">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="423" y="143" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680/1920.-103.1920.1040@0.0.1280.680" timestamp="1613078981255" />
+    <state x="2477" y="135" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1618782611905">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2477" y="-54" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680/1920.-189.1920.1040@1920.-189.1920.1040" timestamp="1610153594255" />
+    <state x="2477" y="135" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618782611905" />
+    <state x="371" y="88" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1616505147380" />
+    <state x="396" y="44" key="#xdebugger.evaluate" timestamp="1612736703007">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="396" y="44" key="#xdebugger.evaluate/0.0.1280.680/1920.-103.1920.1040@0.0.1280.680" timestamp="1612736703007" />
+    <state x="421" y="82" key="FileChooserDialogImpl" timestamp="1618754476230">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="421" y="82" key="FileChooserDialogImpl/0.0.1280.680/1920.-189.1920.1040@0.0.1280.680" timestamp="1610202983139" />
+    <state x="2552" y="125" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1615674151595" />
+    <state x="421" y="82" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1618754476230" />
+    <state width="1877" height="369" key="GridCell.Tab.0.bottom" timestamp="1618607199314">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1237" height="226" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.-103.1920.1040@0.0.1280.680" timestamp="1613079031943" />
+    <state width="1237" height="226" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.-103.1920.1040@1920.-103.1920.1040" timestamp="1613088334123" />
+    <state width="1237" height="97" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.-189.1920.1040@0.0.1280.680" timestamp="1610294101530" />
+    <state width="1871" height="365" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.-189.1920.1040@1920.-189.1920.1040" timestamp="1610233733685" />
+    <state width="1237" height="11" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1613939244748" />
+    <state width="1877" height="369" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618607199314" />
+    <state width="595" height="246" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1615562316645" />
+    <state width="1877" height="369" key="GridCell.Tab.0.center" timestamp="1618607199314">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1237" height="226" key="GridCell.Tab.0.center/0.0.1280.680/1920.-103.1920.1040@0.0.1280.680" timestamp="1613079031943" />
+    <state width="1237" height="226" key="GridCell.Tab.0.center/0.0.1280.680/1920.-103.1920.1040@1920.-103.1920.1040" timestamp="1613088334123" />
+    <state width="1237" height="97" key="GridCell.Tab.0.center/0.0.1280.680/1920.-189.1920.1040@0.0.1280.680" timestamp="1610294101530" />
+    <state width="1871" height="365" key="GridCell.Tab.0.center/0.0.1280.680/1920.-189.1920.1040@1920.-189.1920.1040" timestamp="1610233733685" />
+    <state width="1237" height="11" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1613939244748" />
+    <state width="1877" height="369" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618607199314" />
+    <state width="595" height="246" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1615562316645" />
+    <state width="1877" height="369" key="GridCell.Tab.0.left" timestamp="1618607199314">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1237" height="226" key="GridCell.Tab.0.left/0.0.1280.680/1920.-103.1920.1040@0.0.1280.680" timestamp="1613079031943" />
+    <state width="1237" height="226" key="GridCell.Tab.0.left/0.0.1280.680/1920.-103.1920.1040@1920.-103.1920.1040" timestamp="1613088334122" />
+    <state width="1237" height="97" key="GridCell.Tab.0.left/0.0.1280.680/1920.-189.1920.1040@0.0.1280.680" timestamp="1610294101529" />
+    <state width="1871" height="365" key="GridCell.Tab.0.left/0.0.1280.680/1920.-189.1920.1040@1920.-189.1920.1040" timestamp="1610233733685" />
+    <state width="1237" height="11" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1613939244748" />
+    <state width="1877" height="369" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618607199314" />
+    <state width="595" height="246" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1615562316645" />
+    <state width="1877" height="369" key="GridCell.Tab.0.right" timestamp="1618607199314">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1237" height="226" key="GridCell.Tab.0.right/0.0.1280.680/1920.-103.1920.1040@0.0.1280.680" timestamp="1613079031943" />
+    <state width="1237" height="226" key="GridCell.Tab.0.right/0.0.1280.680/1920.-103.1920.1040@1920.-103.1920.1040" timestamp="1613088334123" />
+    <state width="1237" height="97" key="GridCell.Tab.0.right/0.0.1280.680/1920.-189.1920.1040@0.0.1280.680" timestamp="1610294101530" />
+    <state width="1871" height="365" key="GridCell.Tab.0.right/0.0.1280.680/1920.-189.1920.1040@1920.-189.1920.1040" timestamp="1610233733685" />
+    <state width="1237" height="11" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1613939244748" />
+    <state width="1877" height="369" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618607199314" />
+    <state width="595" height="246" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1615562316645" />
+    <state width="1877" height="369" key="GridCell.Tab.1.bottom" timestamp="1618607199314">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1237" height="226" key="GridCell.Tab.1.bottom/0.0.1280.680/1920.-103.1920.1040@0.0.1280.680" timestamp="1613079031944" />
+    <state width="1237" height="226" key="GridCell.Tab.1.bottom/0.0.1280.680/1920.-103.1920.1040@1920.-103.1920.1040" timestamp="1613088334123" />
+    <state width="1237" height="97" key="GridCell.Tab.1.bottom/0.0.1280.680/1920.-189.1920.1040@0.0.1280.680" timestamp="1610294101530" />
+    <state width="1871" height="365" key="GridCell.Tab.1.bottom/0.0.1280.680/1920.-189.1920.1040@1920.-189.1920.1040" timestamp="1610233733685" />
+    <state width="1237" height="11" key="GridCell.Tab.1.bottom/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1613939244748" />
+    <state width="1877" height="369" key="GridCell.Tab.1.bottom/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618607199314" />
+    <state width="595" height="246" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1615562316645" />
+    <state width="1877" height="369" key="GridCell.Tab.1.center" timestamp="1618607199314">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1237" height="226" key="GridCell.Tab.1.center/0.0.1280.680/1920.-103.1920.1040@0.0.1280.680" timestamp="1613079031943" />
+    <state width="1237" height="226" key="GridCell.Tab.1.center/0.0.1280.680/1920.-103.1920.1040@1920.-103.1920.1040" timestamp="1613088334123" />
+    <state width="1237" height="97" key="GridCell.Tab.1.center/0.0.1280.680/1920.-189.1920.1040@0.0.1280.680" timestamp="1610294101530" />
+    <state width="1871" height="365" key="GridCell.Tab.1.center/0.0.1280.680/1920.-189.1920.1040@1920.-189.1920.1040" timestamp="1610233733685" />
+    <state width="1237" height="11" key="GridCell.Tab.1.center/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1613939244748" />
+    <state width="1877" height="369" key="GridCell.Tab.1.center/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618607199314" />
+    <state width="595" height="246" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1615562316645" />
+    <state width="1877" height="369" key="GridCell.Tab.1.left" timestamp="1618607199314">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1237" height="226" key="GridCell.Tab.1.left/0.0.1280.680/1920.-103.1920.1040@0.0.1280.680" timestamp="1613079031943" />
+    <state width="1237" height="226" key="GridCell.Tab.1.left/0.0.1280.680/1920.-103.1920.1040@1920.-103.1920.1040" timestamp="1613088334123" />
+    <state width="1237" height="97" key="GridCell.Tab.1.left/0.0.1280.680/1920.-189.1920.1040@0.0.1280.680" timestamp="1610294101530" />
+    <state width="1871" height="365" key="GridCell.Tab.1.left/0.0.1280.680/1920.-189.1920.1040@1920.-189.1920.1040" timestamp="1610233733685" />
+    <state width="1237" height="11" key="GridCell.Tab.1.left/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1613939244748" />
+    <state width="1877" height="369" key="GridCell.Tab.1.left/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618607199314" />
+    <state width="595" height="246" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1615562316645" />
+    <state width="1877" height="369" key="GridCell.Tab.1.right" timestamp="1618607199314">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1237" height="226" key="GridCell.Tab.1.right/0.0.1280.680/1920.-103.1920.1040@0.0.1280.680" timestamp="1613079031943" />
+    <state width="1237" height="226" key="GridCell.Tab.1.right/0.0.1280.680/1920.-103.1920.1040@1920.-103.1920.1040" timestamp="1613088334123" />
+    <state width="1237" height="97" key="GridCell.Tab.1.right/0.0.1280.680/1920.-189.1920.1040@0.0.1280.680" timestamp="1610294101530" />
+    <state width="1871" height="365" key="GridCell.Tab.1.right/0.0.1280.680/1920.-189.1920.1040@1920.-189.1920.1040" timestamp="1610233733685" />
+    <state width="1237" height="11" key="GridCell.Tab.1.right/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1613939244748" />
+    <state width="1877" height="369" key="GridCell.Tab.1.right/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618607199314" />
+    <state width="595" height="246" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1615562316645" />
+    <state x="2270" y="113" key="Vcs.Push.Dialog.v2" timestamp="1618782682199">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2270" y="-76" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.-189.1920.1040@1920.-189.1920.1040" timestamp="1610153640414" />
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1613913705590" />
+    <state x="2270" y="113" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618782682199" />
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1610400257377" />
+    <state width="971" height="531" key="XDebugger.FullValuePopup" timestamp="1615669304137">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="647" height="347" key="XDebugger.FullValuePopup/0.0.1280.680/1920.-103.1920.1040@0.0.1280.680" timestamp="1612735098328" />
+    <state width="971" height="531" key="XDebugger.FullValuePopup/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1615669304137" />
+    <state x="2060" y="-47" width="1643" height="758" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1610153691817">
+      <screen x="1920" y="-189" width="1920" height="1040" />
+    </state>
+    <state x="93" y="93" width="1095" height="495" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1280.680/1920.-189.1920.1040@0.0.1280.680" timestamp="1610153369266" />
+    <state x="2060" y="-47" width="1643" height="758" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1280.680/1920.-189.1920.1040@1920.-189.1920.1040" timestamp="1610153691817" />
+    <state x="93" y="93" width="1095" height="495" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1610153369266">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="93" y="93" width="1095" height="495" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680/1920.-189.1920.1040@0.0.1280.680" timestamp="1610153369266" />
+    <state x="458" y="255" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1610151985909">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="458" y="255" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680/1920.-189.1920.1040@0.0.1280.680" timestamp="1610151985909" />
+    <state x="0" y="0" width="1294" height="737" key="dock-window-1" timestamp="1614086189559">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="0" y="0" width="1294" height="737" key="dock-window-1/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1614035020218" />
+    <state x="0" y="0" width="1294" height="737" key="dock-window-1/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1614086189559" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="predictions" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/image_processing_code$train_hopenet__1_.coverage" NAME="train_hopenet (1) Coverage Results" MODIFIED="1612731603540" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/image_processing_code$gaze_direction.coverage" NAME="gaze_direction Coverage Results" MODIFIED="1609362374787" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/image_processing_code$gaze_direction_test.coverage" NAME="gaze_direction_test Coverage Results" MODIFIED="1613428491807" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/image_processing_code$tf.coverage" NAME="tf Coverage Results" MODIFIED="1613079015533" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/image_processing_code$mask.coverage" NAME="mask Coverage Results" MODIFIED="1614031665502" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/image_processing_code$test_on_image.coverage" NAME="test_on_image Coverage Results" MODIFIED="1618605616718" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/image_processing_code$hopenet_noclass.coverage" NAME="hopenet_noclass Coverage Results" MODIFIED="1610115735197" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>

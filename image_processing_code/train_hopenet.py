@@ -1,3 +1,10 @@
+"""
+    Name: Ross Monaghan
+    File: train_hopenet.py
+    Description: File containing functionality to train the head pose estimation model
+    Date: 15/05/21
+"""
+
 import datasets
 import hopenet
 
@@ -9,7 +16,6 @@ AFLW2000_TEST_SAVE_DIR = PROJECT_DIR + "data\\aflw2000_test\\"
 BIWI_DATA_DIR = "C:\\Users\\rossm\\kinect_head_pose_db\\hpdb\\"
 BIWI_TEST_SAVE_DIR = PROJECT_DIR + "data\\biwi_test\\"
 
-# MODEL_PATH = "C:\\Users\\rossm\\OneDrive - GMIT\\Year 4\\Final Year Project\\models\\alexnet_biwi_25_epoch.h5"
 MODEL_PATH = "C:\\Users\\rossm\\OneDrive - GMIT\\Year 4\\Final Year Project\\image_processing_code\\models\\vgg16_aflw_25_epoch_flipped.h5"
 
 BIN_NUM = 66

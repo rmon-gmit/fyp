@@ -1,6 +1,29 @@
-import os
-import sys
+"""
+    Name: Ross Monaghan
+    File: data.py
+    Description: File containing methods to manage data input for saliency mapping
+    Date: 15/05/21
 
+    ** THE FOLLOWING CODE IS TAKEN FROM THE MSI-NET GITHUB REPOSITORY **
+
+    ** URL: https://github.com/alexanderkroner/saliency **
+
+    @article{kroner2020contextual,
+      title={Contextual encoder-decoder network for visual saliency prediction},
+      author={Kroner, Alexander and Senden, Mario and Driessens, Kurt and Goebel, Rainer},
+      url={http://www.sciencedirect.com/science/article/pii/S0893608020301660},
+      doi={https://doi.org/10.1016/j.neunet.2020.05.004},
+      journal={Neural Networks},
+      publisher={Elsevier},
+      year={2020},
+      volume={129},
+      pages={261--270},
+      issn={0893-6080}
+    }
+
+"""
+
+import os
 import numpy as np
 import tensorflow as tf
 
@@ -18,14 +41,12 @@ class TEST:
 
     def __init__(self, data_path):
         self._target_size = (240, 320)
-
         self._dir_stimuli_test = data_path
 
     def load_data(self):
         test_list_x = _get_file_list(self._dir_stimuli_test)
+        test_set = _fetch_dataset(files=test_list_x, target_size=self._target_size)
 
-        test_set = _fetch_dataset(files=test_list_x,
-                                  target_size=self._target_size)
         return test_set
 
 
@@ -71,10 +92,8 @@ def postprocess_saliency_map(saliency_map, target_size):
     """
 
     saliency_map *= 255.0
-
     saliency_map = _resize_image(saliency_map, target_size, True)
     saliency_map = _crop_image(saliency_map, target_size)
-
     saliency_map = tf.compat.v1.round(saliency_map)
     saliency_map = tf.compat.v1.cast(saliency_map, tf.compat.v1.uint8)
 
@@ -105,8 +124,7 @@ def _fetch_dataset(files, target_size):
     map_func = lambda *files: _parse_function(files, target_size)
     num_parallel_calls = tf.data.experimental.AUTOTUNE
 
-    dataset = dataset.map(map_func=map_func,
-                          num_parallel_calls=num_parallel_calls)
+    dataset = dataset.map(map_func=map_func,  num_parallel_calls=num_parallel_calls)
 
     batch_size = 1
 
@@ -140,8 +158,8 @@ def _parse_function(files, target_size):
         channels = 3 if count == 0 else 1
 
         image = tf.compat.v1.cond(tf.compat.v1.image.is_jpeg(image_str),
-                        lambda: tf.compat.v1.image.decode_jpeg(image_str, channels=channels),
-                        lambda: tf.compat.v1.image.decode_png(image_str, channels=channels))
+                                  lambda: tf.compat.v1.image.decode_jpeg(image_str, channels=channels),
+                                  lambda: tf.compat.v1.image.decode_png(image_str, channels=channels))
         original_size = tf.compat.v1.shape(image)[:2]
 
         image = _resize_image(image, target_size)
@@ -191,18 +209,16 @@ def _resize_image(image, target_size, overfull=False):
     target_size = tf.compat.v1.cast(current_size, tf.compat.v1.float64) * target_ratio
     target_size = tf.compat.v1.cast(tf.compat.v1.round(target_size), tf.compat.v1.int32)
 
-    shrinking = tf.compat.v1.cond(tf.compat.v1.logical_or(current_size[0] > target_size[0],
-                                      current_size[1] > target_size[1]),
-                        lambda: tf.compat.v1.constant(True),
-                        lambda: tf.compat.v1.constant(False))
+    shrinking = tf.compat.v1.cond(
+        tf.compat.v1.logical_or(current_size[0] > target_size[0],
+                            current_size[1] > target_size[1]),
+                            lambda: tf.compat.v1.constant(True),
+                            lambda: tf.compat.v1.constant(False))
 
     image = tf.compat.v1.expand_dims(image, 0)
-
     image = tf.compat.v1.cond(shrinking,
-                    lambda: tf.compat.v1.compat.v1.image.resize_area(image, target_size,
-                                                           align_corners=True),
-                    lambda: tf.compat.v1.compat.v1.image.resize_bicubic(image, target_size,
-                                                              align_corners=True))
+                          lambda: tf.compat.v1.compat.v1.image.resize_area(image, target_size, align_corners=True),
+                          lambda: tf.compat.v1.compat.v1.image.resize_bicubic(image, target_size, align_corners=True))
 
     image = tf.compat.v1.clip_by_value(image[0], 0.0, 255.0)
 
@@ -225,8 +241,8 @@ def _pad_image(image, target_size):
     current_size = tf.compat.v1.shape(image)
 
     pad_constant_value = tf.compat.v1.cond(tf.compat.v1.equal(current_size[2], 3),
-                                 lambda: tf.compat.v1.constant(126.0),
-                                 lambda: tf.compat.v1.constant(0.0))
+                                           lambda: tf.compat.v1.constant(126.0),
+                                           lambda: tf.compat.v1.constant(0.0))
 
     pad_vertical = (target_size[0] - current_size[0]) / 2
     pad_horizontal = (target_size[1] - current_size[1]) / 2

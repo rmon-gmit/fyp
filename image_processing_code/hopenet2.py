@@ -1,3 +1,10 @@
+"""
+    Name: Ross Monaghan
+    File: hopenet2.py
+    Description: File containing second attempts at training hopenet model
+    Date: 15/05/21
+"""
+
 import datasets
 import tensorflow as tf
 import numpy as np
@@ -7,7 +14,8 @@ from keras.applications.vgg16 import VGG16
 from keras.layers import Dense, Flatten, Dropout, Conv2D, MaxPool2D
 from keras.models import Model, Input
 
-MODELS_DIR = "C:/Users/rossm/OneDrive - GMIT/Year 4/Final Year Project/models/"
+PROJECT_DIR = "C:/Users/rossm/OneDrive - GMIT/Year 4/Final Year Project/image_processing_code/"
+MODELS_DIR = PROJECT_DIR + "models/"
 AFLW2000_DATA_DIR = "C:/Users/rossm/AFLW2000/"
 BIWI_PRETRAINED = "C:/Users/rossm/OneDrive - GMIT/Year 4/Final Year Project/image_processing_code/models/biwi_model_pretrained.h5"
 
@@ -63,7 +71,6 @@ inputs = Input(shape=(INPUT_SIZE, INPUT_SIZE, 3))
 # # VGG16 backbone
 net = VGG16(weights=None, include_top=False)
 feature = net(inputs)
-
 
 # feature = Conv2D(filters=64, kernel_size=(11, 11), strides=4, padding='same', activation=tf.nn.relu)(inputs)
 # feature = MaxPool2D(pool_size=(3, 3), strides=2)(feature)
