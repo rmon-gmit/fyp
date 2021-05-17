@@ -130,7 +130,7 @@ def create_mask(img, pitch, yaw, ptx=None, pty=None, size=1000, theta=20):
 
     pt2 = (int(x1), int(y1))
 
-    ####### Getting ellipse points ######
+    ####### Getting Points ######
     if pitch > 0:
         dir_x = head_ctr[0] - pt2[0]
         dir_y = head_ctr[1] - pt2[1]
@@ -141,8 +141,8 @@ def create_mask(img, pitch, yaw, ptx=None, pty=None, size=1000, theta=20):
     dir_len = math.sqrt(dir_x * dir_x + dir_y * dir_y)  # Length of gaze direction line
     dir_angle = math.degrees(math.acos(dir_x / dir_len))
 
-    # Ellipse point 1
-    edge1_len = dir_len / math.cos(math.radians(theta))  # Length of line from head to ellipse point 1
+    # Point 1
+    edge1_len = dir_len / math.cos(math.radians(theta))  # Length of line from head to Point 1
     edge1_angle = dir_angle - theta
     if pitch > 0:
         edge1_x = head_ctr[0] - math.cos(math.radians(edge1_angle)) * edge1_len
@@ -151,8 +151,8 @@ def create_mask(img, pitch, yaw, ptx=None, pty=None, size=1000, theta=20):
         edge1_x = head_ctr[0] + math.cos(math.radians(edge1_angle)) * edge1_len
         edge1_y = head_ctr[1] + math.cos(math.radians(90 - edge1_angle)) * edge1_len
 
-    # Ellipse point 2
-    edge2_len = dir_len / math.cos(math.radians(theta))  # Length of line from head to ellipse point 2
+    # Point 2
+    edge2_len = dir_len / math.cos(math.radians(theta))  # Length of line from head to Point 2
     edge2_angle = dir_angle + theta
     if pitch > 0:
         edge2_x = head_ctr[0] - math.cos(math.radians(edge2_angle)) * edge2_len
@@ -216,7 +216,6 @@ def most_salient_area(dir_len, head_ctr, saliency_img):
                     cnt_len_y = head_ctr[1] - contour_ctr[1]
 
                 cnt_len = math.sqrt(cnt_len_x * cnt_len_x + cnt_len_y * cnt_len_y)
-
                 angle = math.degrees(math.acos(cnt_len / dir_len))
 
                 mean = cv2.mean(gray, label_mask)

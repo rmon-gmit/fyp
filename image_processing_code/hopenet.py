@@ -61,16 +61,18 @@ class HopeNet:
         # feature = Dense(units=4096, activation=tf.nn.relu)(feature)
 
         # Output layers for pitch and yaw
-        pitch = Dense(units=self.num_bins, name='pitch', activation='softmax')(feature)
-        yaw = Dense(units=self.num_bins, name='yaw', activation='softmax')(feature)
+        pitch = Dense(units=self.num_bins, name='pitch')(feature)
+        yaw = Dense(units=self.num_bins, name='yaw')(feature)
+        roll = Dense(units=self.num_bins, name='roll')(feature)
 
-        model = Model(inputs=inputs, outputs=[yaw, pitch])
+        model = Model(inputs=inputs, outputs=[yaw, pitch, roll])
 
         model.compile(
             optimizer=optimizers.Adam(learning_rate=LEARNING_RATE, epsilon=EPSILON),
             loss={
                 'pitch': self.__loss_angle,
-                'yaw': self.__loss_angle
+                'yaw': self.__loss_angle,
+                'roll': self.__loss_angle
             }
         )
 
@@ -81,9 +83,9 @@ class HopeNet:
         model = load_model(model_path, compile=False)
         return model
 
-    # Method to create a Hopenet model
+    # Loss function for use in training Hopenet on classification and regression labels
     def __loss_angle(self, true_labels, predicted_labels, alpha=ALPHA):
-        """ Calculate the multi-part loss: classification_loss + alpha * regression_loss
+        """ Multi-part loss: classification_loss + alpha * regression_loss
         Args:
           true_labels: the actual binary and continuous labels
           predicted_labels: the predicted binary and continuous labels
@@ -96,12 +98,12 @@ class HopeNet:
         y_true_bin = true_labels[:, 0]
         y_true_bin = tf.cast(y_true_bin, tf.int64)  # Casting elements of true binned labels to 64 bit integers
         y_true_bin = tf.one_hot(y_true_bin, self.num_bins)  # Converting the true binned labels to onehot encoding
-        cls_loss = tf.keras.losses.categorical_crossentropy(y_true_bin, predicted_labels)  # classification loss
+        softmax_pred = tf.nn.softmax(predicted_labels)  # Carrying out softmax function on the predicted labels
+        cls_loss = tf.keras.losses.categorical_crossentropy(y_true_bin, softmax_pred)  # classification loss
 
         # Regression loss
         y_true_cont = true_labels[:, 1]
-        reduced_pred = tf.reduce_sum(predicted_labels * self.idx_tensor,
-                                     1) * 3 - 99  # reducing 1st axis of predicted labels
+        reduced_pred = tf.reduce_sum(predicted_labels * self.idx_tensor, 1) * 3 - 99  # reducing 1st axis of predicted labels
 
         mse_loss = tf.keras.losses.mean_squared_error(y_true_cont, reduced_pred)  # regression loss
 
